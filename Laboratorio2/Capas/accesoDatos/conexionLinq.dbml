@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProyectoProgra5" Class="conexionLinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\Local;Initial Catalog=ProyectoProgra5;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ProyectoProgra5ConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_CREAR_INGREDIENTE" Method="SP_CREAR_INGREDIENTE">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ingrediente" Parameter="ingrediente" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_VERIFIED_USER_LOGIN" Method="SP_VERIFIED_USER_LOGIN">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="SP_VERIFIED_USER_LOGINResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CREAR_PASO" Method="SP_CREAR_PASO">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Paso" Parameter="paso" Type="System.String" DbType="VarChar(600)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_CREAR_RECETA" Method="SP_CREAR_RECETA">
+    <Parameter Name="NombreReceta" Parameter="nombreReceta" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Calificacion" Parameter="calificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_CREAR_USUARIO" Method="SP_CREAR_USUARIO">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_EDITAR_INGREDIENTE" Method="SP_EDITAR_INGREDIENTE">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ingrediente" Parameter="ingrediente" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_EDITAR_PASO" Method="SP_EDITAR_PASO">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Paso" Parameter="paso" Type="System.String" DbType="VarChar(600)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_EDITAR_RECETA" Method="SP_EDITAR_RECETA">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreReceta" Parameter="nombreReceta" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Calificacion" Parameter="calificacion" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_EDITAR_USUARIO" Method="SP_EDITAR_USUARIO">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_INGREDIENTE" Method="SP_ELIMINAR_INGREDIENTE">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_PASO" Method="SP_ELIMINAR_PASO">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_RECETA" Method="SP_ELIMINAR_RECETA">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_USUARIO" Method="SP_ELIMINAR_USUARIO">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_HACER_USUARIO_ADMIN" Method="SP_HACER_USUARIO_ADMIN">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_MOSTRAR_RECETA" Method="SP_MOSTRAR_RECETA">
+    <ElementType Name="SP_MOSTRAR_RECETAResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreReceta" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="calificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ingrediente" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="paso" Type="System.String" DbType="NVarChar(600) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_MOSTRAR_RECETA_BY_USUARIO" Method="SP_MOSTRAR_RECETA_BY_USUARIO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_RECETA_BY_USUARIOResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreReceta" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="calificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ingrediente" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="paso" Type="System.String" DbType="NVarChar(600) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_VER_TODOS_USUARIOS" Method="SP_VER_TODOS_USUARIOS">
+    <ElementType Name="SP_VER_TODOS_USUARIOSResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME" Method="SP_VER_UN_USUARIO_BY_USERNAME">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_VER_UN_USUARIO_BY_USERNAMEResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

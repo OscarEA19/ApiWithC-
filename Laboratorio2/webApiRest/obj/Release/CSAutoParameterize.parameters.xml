@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="USUARIOSConnectionString-Web.config Connection String" description="USUARIOSConnectionString Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=xporthood.c7zdwys8stee.us-east-1.rds.amazonaws.com;Initial Catalog=USUARIOS;User ID=sa;Password=manager01" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Johan\\Desktop\\Progra\ V\\final\\solCapasAzure\\solCapasBackend\\webApiRest\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='USUARIOSConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
