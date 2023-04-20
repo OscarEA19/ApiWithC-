@@ -75,6 +75,25 @@
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_VER_TODOS_USUARIOS" Method="SP_VER_TODOS_USUARIOS">
+    <ElementType Name="SP_VER_TODOS_USUARIOSResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME" Method="SP_VER_UN_USUARIO_BY_USERNAME">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_VER_UN_USUARIO_BY_USERNAMEResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_MOSTRAR_RECETA" Method="SP_MOSTRAR_RECETA">
     <ElementType Name="SP_MOSTRAR_RECETAResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -96,25 +115,6 @@
       <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ingrediente" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="paso" Type="System.String" DbType="NVarChar(600) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_VER_TODOS_USUARIOS" Method="SP_VER_TODOS_USUARIOS">
-    <ElementType Name="SP_VER_TODOS_USUARIOSResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME" Method="SP_VER_UN_USUARIO_BY_USERNAME">
-    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_VER_UN_USUARIO_BY_USERNAMEResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -63,21 +63,7 @@ namespace Capas.Logica
                     List<SP_MOSTRAR_RECETA_BY_USUARIOResult> result = laConexion.SP_MOSTRAR_RECETA_BY_USUARIO(req.idUsuario).ToList();
                     if (result.Count != 0)
                     {
-                        res.receta = new Receta()
-                        {
-
-                            id = result[0].id,
-                            nombreReceta = result[0].nombreReceta,
-                            calificacion = result[0].calificacion,
-                            status = result[0].status,
-                            usuario = new Usuario()
-                            {
-                                username = result[0].username,
-                            },
-                            ingredientes = armarIngrediente(result),
-                            pasos = armarPaso(result)
-                        };
-
+                        res.listaDeRecetas = this.armarListaDeRecetas(result);
                         res.result = true;
                     }
                     else
@@ -191,73 +177,180 @@ namespace Capas.Logica
         private List<Receta> armarListaDeRecetas(List<SP_MOSTRAR_RECETAResult> listaDeRecetasLinq)
         {
             List<Receta> listaRecetaArmada = new List<Receta>();
+            List<Ingrediente> listaIngrediente = new List<Ingrediente>();
+            List<Paso> listaPaso = new List<Paso>();
+
             foreach (SP_MOSTRAR_RECETAResult elementoLinq in listaDeRecetasLinq)
             {
-
-                Receta receta = new Receta()
+                Ingrediente ingrediente = new Ingrediente()
                 {
-
-                    id = elementoLinq.id,
-                    nombreReceta = elementoLinq.nombreReceta,
-                    calificacion = elementoLinq.calificacion,
-                    status = elementoLinq.status,
-                    usuario = new Usuario()
-                    {
-                        username = elementoLinq.username
-                    },
-                    ingredientes = armarIngrediente(listaDeRecetasLinq),
-                    pasos = armarPaso(listaDeRecetasLinq)
+                    idReceta = elementoLinq.id,
+                    ingrediente = elementoLinq.ingrediente,
                 };
-                listaRecetaArmada.Add(receta);
+                listaIngrediente.Add(ingrediente);
+            }
+
+            foreach (SP_MOSTRAR_RECETAResult elementoLinq in listaDeRecetasLinq)
+            {
+                Paso paso = new Paso()
+                {
+                    idReceta = elementoLinq.id,
+                    paso = elementoLinq.paso,
+                };
+                listaPaso.Add(paso);    
+            }
+
+
+            foreach (SP_MOSTRAR_RECETAResult elementoLinq in listaDeRecetasLinq)
+            {
+                bool existeReceta = false;
+
+                foreach(Receta receta in listaRecetaArmada)
+                {
+                    if (receta.id == elementoLinq.id)
+                    {
+                        existeReceta = true;
+                    }
+                }
+
+                if (!existeReceta)
+                {
+                    Receta receta = new Receta()
+                    {
+                        id = elementoLinq.id,
+                        nombreReceta = elementoLinq.nombreReceta,
+                        calificacion = elementoLinq.calificacion,
+                        status = elementoLinq.status,
+                        usuario = new Usuario()
+                        {
+                            username = elementoLinq.username
+                        },
+                    };
+                    foreach (Ingrediente ingrediente in listaIngrediente)
+                    {
+                        bool existeIngrediente = false;
+                        foreach(Ingrediente ingredienteValid in receta.ingredientes)
+                        {
+                            if (ingredienteValid.ingrediente.Equals(ingrediente.ingrediente))
+                            {
+                                existeIngrediente = true;
+                            }
+                        }
+
+                        if (ingrediente.idReceta == receta.id && !existeIngrediente)
+                        {
+                            receta.ingredientes.Add(ingrediente);
+                        }
+                    }
+                    foreach (Paso paso in listaPaso)
+                    {
+                        bool existePaso = false;
+                        foreach (Paso pasoValid in receta.pasos)
+                        {
+                            if (pasoValid.paso.Equals(paso.paso))
+                            {
+                                existePaso = true;
+                            }
+                        }
+                        if (paso.idReceta == receta.id && !existePaso)
+                        {
+                            receta.pasos.Add(paso);
+                        }
+                    }
+                    listaRecetaArmada.Add(receta);
+                }
             }
             return listaRecetaArmada;
         }
-        private List<Ingrediente> armarIngrediente(List<SP_MOSTRAR_RECETA_BY_USUARIOResult> result)
-        {
-            List<Ingrediente> listaIngredientes = new List<Ingrediente>();
-            foreach (SP_MOSTRAR_RECETA_BY_USUARIOResult elementoLinq in result)
-            {
-                Ingrediente ingrediente = new Ingrediente();
-                ingrediente.ingrediente = elementoLinq.ingrediente;
-                listaIngredientes.Add(ingrediente);
-            }
-            return listaIngredientes;
-        }
-        private List<Ingrediente> armarIngrediente(List<SP_MOSTRAR_RECETAResult> result)
-        {
-            List<Ingrediente> listaIngredientes = new List<Ingrediente>();
-            foreach (SP_MOSTRAR_RECETAResult elementoLinq in result)
-            {
-                Ingrediente ingrediente = new Ingrediente();
-                ingrediente.ingrediente = elementoLinq.ingrediente;
-                listaIngredientes.Add(ingrediente);
-            }
-            return listaIngredientes;
-        }
 
-        private List<Paso> armarPaso(List<SP_MOSTRAR_RECETA_BY_USUARIOResult> result)
+
+        private List<Receta> armarListaDeRecetas(List<SP_MOSTRAR_RECETA_BY_USUARIOResult> listaDeRecetasLinq)
         {
+            List<Receta> listaRecetaArmada = new List<Receta>();
+            List<Ingrediente> listaIngrediente = new List<Ingrediente>();
             List<Paso> listaPaso = new List<Paso>();
-            foreach (SP_MOSTRAR_RECETA_BY_USUARIOResult elementoLinq in result)
+
+            foreach (SP_MOSTRAR_RECETA_BY_USUARIOResult elementoLinq in listaDeRecetasLinq)
             {
-                Paso paso = new Paso();
-                paso.paso = elementoLinq.paso;
+                Ingrediente ingrediente = new Ingrediente()
+                {
+                    idReceta = elementoLinq.id,
+                    ingrediente = elementoLinq.ingrediente,
+                };
+                listaIngrediente.Add(ingrediente);
+            }
+
+            foreach (SP_MOSTRAR_RECETA_BY_USUARIOResult elementoLinq in listaDeRecetasLinq)
+            {
+                Paso paso = new Paso()
+                {
+                    idReceta = elementoLinq.id,
+                    paso = elementoLinq.paso,
+                };
                 listaPaso.Add(paso);
             }
-            return listaPaso;
-        }
-        private List<Paso> armarPaso(List<SP_MOSTRAR_RECETAResult> result)
-        {
-            List<Paso> listaPaso = new List<Paso>();
-            foreach (SP_MOSTRAR_RECETAResult elementoLinq in result)
+
+
+            foreach (SP_MOSTRAR_RECETA_BY_USUARIOResult elementoLinq in listaDeRecetasLinq)
             {
-                Paso paso = new Paso();
-                paso.paso = elementoLinq.paso;
-                listaPaso.Add(paso);
+                bool existeReceta = false;
+
+                foreach (Receta receta in listaRecetaArmada)
+                {
+                    if (receta.id == elementoLinq.id)
+                    {
+                        existeReceta = true;
+                    }
+                }
+
+                if (!existeReceta)
+                {
+                    Receta receta = new Receta()
+                    {
+                        id = elementoLinq.id,
+                        nombreReceta = elementoLinq.nombreReceta,
+                        calificacion = elementoLinq.calificacion,
+                        status = elementoLinq.status,
+                        usuario = new Usuario()
+                        {
+                            username = elementoLinq.username
+                        },
+                    };
+                    foreach (Ingrediente ingrediente in listaIngrediente)
+                    {
+                        bool existeIngrediente = false;
+                        foreach (Ingrediente ingredienteValid in receta.ingredientes)
+                        {
+                            if (ingredienteValid.ingrediente.Equals(ingrediente.ingrediente))
+                            {
+                                existeIngrediente = true;
+                            }
+                        }
+
+                        if (ingrediente.idReceta == receta.id && !existeIngrediente)
+                        {
+                            receta.ingredientes.Add(ingrediente);
+                        }
+                    }
+                    foreach (Paso paso in listaPaso)
+                    {
+                        bool existePaso = false;
+                        foreach (Paso pasoValid in receta.pasos)
+                        {
+                            if (pasoValid.paso.Equals(paso.paso))
+                            {
+                                existePaso = true;
+                            }
+                        }
+                        if (paso.idReceta == receta.id && !existePaso)
+                        {
+                            receta.pasos.Add(paso);
+                        }
+                    }
+                    listaRecetaArmada.Add(receta);
+                }
             }
-            return listaPaso;
+            return listaRecetaArmada;
         }
-
-
     }
 }

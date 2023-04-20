@@ -7,7 +7,6 @@ namespace Capas.Entidades
 {
     public class ResObtenerRecetaByUsuario : Resbase 
     {
-        public Receta receta;
-
+        public List<Receta> listaDeRecetas;
     }
 }
