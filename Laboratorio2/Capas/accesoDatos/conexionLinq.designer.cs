@@ -69,13 +69,6 @@ namespace Capas.accesoDatos
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_VERIFIED_USER_LOGIN")]
-		public ISingleResult<SP_VERIFIED_USER_LOGINResult> SP_VERIFIED_USER_LOGIN([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
-			return ((ISingleResult<SP_VERIFIED_USER_LOGINResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_CREAR_PASO")]
 		public int SP_CREAR_PASO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdReceta", DbType="Int")] System.Nullable<int> idReceta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Paso", DbType="VarChar(600)")] string paso)
 		{
@@ -167,13 +160,6 @@ namespace Capas.accesoDatos
 			return ((ISingleResult<SP_VER_TODOS_USUARIOSResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME")]
-		public ISingleResult<SP_VER_UN_USUARIO_BY_USERNAMEResult> SP_VER_UN_USUARIO_BY_USERNAME([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<SP_VER_UN_USUARIO_BY_USERNAMEResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_MOSTRAR_RECETA")]
 		public ISingleResult<SP_MOSTRAR_RECETAResult> SP_MOSTRAR_RECETA()
 		{
@@ -187,121 +173,19 @@ namespace Capas.accesoDatos
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
 			return ((ISingleResult<SP_MOSTRAR_RECETA_BY_USUARIOResult>)(result.ReturnValue));
 		}
-	}
-	
-	public partial class SP_VERIFIED_USER_LOGINResult
-	{
 		
-		private int _id;
-		
-		private string _username;
-		
-		private string _password;
-		
-		private int _status;
-		
-		private int _isAdmin;
-		
-		private string _email;
-		
-		public SP_VERIFIED_USER_LOGINResult()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_VERIFIED_USER_LOGIN")]
+		public ISingleResult<SP_VERIFIED_USER_LOGINResult> SP_VERIFIED_USER_LOGIN([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email)
 		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
+			return ((ISingleResult<SP_VERIFIED_USER_LOGINResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME")]
+		public ISingleResult<SP_VER_UN_USUARIO_BY_USERNAMEResult> SP_VER_UN_USUARIO_BY_USERNAME([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(50)")] string password)
 		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string username
-		{
-			get
-			{
-				return this._username;
-			}
-			set
-			{
-				if ((this._username != value))
-				{
-					this._username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string password
-		{
-			get
-			{
-				return this._password;
-			}
-			set
-			{
-				if ((this._password != value))
-				{
-					this._password = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int NOT NULL")]
-		public int status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this._status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="Int NOT NULL")]
-		public int isAdmin
-		{
-			get
-			{
-				return this._isAdmin;
-			}
-			set
-			{
-				if ((this._isAdmin != value))
-				{
-					this._isAdmin = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(50)")]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this._email = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, password);
+			return ((ISingleResult<SP_VER_UN_USUARIO_BY_USERNAMEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -319,104 +203,6 @@ namespace Capas.accesoDatos
 		private string _email;
 		
 		public SP_VER_TODOS_USUARIOSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string username
-		{
-			get
-			{
-				return this._username;
-			}
-			set
-			{
-				if ((this._username != value))
-				{
-					this._username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int NOT NULL")]
-		public int status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this._status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="Int NOT NULL")]
-		public int isAdmin
-		{
-			get
-			{
-				return this._isAdmin;
-			}
-			set
-			{
-				if ((this._isAdmin != value))
-				{
-					this._isAdmin = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(50)")]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this._email = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_VER_UN_USUARIO_BY_USERNAMEResult
-	{
-		
-		private int _id;
-		
-		private string _username;
-		
-		private int _status;
-		
-		private int _isAdmin;
-		
-		private string _email;
-		
-		public SP_VER_UN_USUARIO_BY_USERNAMEResult()
 		{
 		}
 		
@@ -764,6 +550,202 @@ namespace Capas.accesoDatos
 				if ((this._paso != value))
 				{
 					this._paso = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_VERIFIED_USER_LOGINResult
+	{
+		
+		private int _id;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private int _status;
+		
+		private int _isAdmin;
+		
+		private string _email;
+		
+		public SP_VERIFIED_USER_LOGINResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this._username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this._password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int NOT NULL")]
+		public int status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="Int NOT NULL")]
+		public int isAdmin
+		{
+			get
+			{
+				return this._isAdmin;
+			}
+			set
+			{
+				if ((this._isAdmin != value))
+				{
+					this._isAdmin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(50)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this._email = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_VER_UN_USUARIO_BY_USERNAMEResult
+	{
+		
+		private int _id;
+		
+		private string _username;
+		
+		private int _status;
+		
+		private int _isAdmin;
+		
+		public SP_VER_UN_USUARIO_BY_USERNAMEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this._username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int NOT NULL")]
+		public int status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="Int NOT NULL")]
+		public int isAdmin
+		{
+			get
+			{
+				return this._isAdmin;
+			}
+			set
+			{
+				if ((this._isAdmin != value))
+				{
+					this._isAdmin = value;
 				}
 			}
 		}

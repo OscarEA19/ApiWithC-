@@ -3,6 +3,7 @@ namespace Capas.Entidades
 {
     public class ReqObtenerUsuario : Reqbase
     {
-        public int id;
+        public string email;
+        public string password;
     }
 }

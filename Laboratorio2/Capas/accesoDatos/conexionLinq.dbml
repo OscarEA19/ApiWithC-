@@ -5,17 +5,6 @@
     <Parameter Name="Ingrediente" Parameter="ingrediente" Type="System.String" DbType="VarChar(100)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_VERIFIED_USER_LOGIN" Method="SP_VERIFIED_USER_LOGIN">
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="SP_VERIFIED_USER_LOGINResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_CREAR_PASO" Method="SP_CREAR_PASO">
     <Parameter Name="IdReceta" Parameter="idReceta" Type="System.Int32" DbType="Int" />
     <Parameter Name="Paso" Parameter="paso" Type="System.String" DbType="VarChar(600)" />
@@ -84,16 +73,6 @@
       <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME" Method="SP_VER_UN_USUARIO_BY_USERNAME">
-    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_VER_UN_USUARIO_BY_USERNAMEResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_MOSTRAR_RECETA" Method="SP_MOSTRAR_RECETA">
     <ElementType Name="SP_MOSTRAR_RECETAResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -115,6 +94,27 @@
       <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ingrediente" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="paso" Type="System.String" DbType="NVarChar(600) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_VERIFIED_USER_LOGIN" Method="SP_VERIFIED_USER_LOGIN">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="SP_VERIFIED_USER_LOGINResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_VER_UN_USUARIO_BY_USERNAME" Method="SP_VER_UN_USUARIO_BY_USERNAME">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="SP_VER_UN_USUARIO_BY_USERNAMEResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

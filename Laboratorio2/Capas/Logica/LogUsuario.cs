@@ -113,15 +113,21 @@ namespace Capas.Logica
             ResObtenerUsuario res = new ResObtenerUsuario();
             try
             {
-                if (req.id == 0)
+                if (String.IsNullOrEmpty(req.email))
                 {
-                    res.listaDeErrores.Add("No se envio el id");
+                    res.listaDeErrores.Add("No se envio el nombre de usuario");
+                    res.result = false;
+                }
+                else if (String.IsNullOrEmpty(req.password))
+                {
+                    res.listaDeErrores.Add("No se envio la contraseña");
                     res.result = false;
                 }
                 else
                 {
+                    string passwordEncryp = encrypt(req.password);
                     conexionLinqDataContext laConexion = new conexionLinqDataContext();
-                    List<SP_VER_UN_USUARIO_BY_USERNAMEResult> result = laConexion.SP_VER_UN_USUARIO_BY_USERNAME(req.id).ToList();
+                    List<SP_VER_UN_USUARIO_BY_USERNAMEResult> result = laConexion.SP_VER_UN_USUARIO_BY_USERNAME(req.email, passwordEncryp).ToList();
                     if (result.Count != 0)
                     {
                         res.usuario = new Usuario()
@@ -130,8 +136,6 @@ namespace Capas.Logica
                             username = result[0].username,
                             status = result[0].status,
                             isAdmin = result[0].isAdmin,
-                            email = result[0].email,
-
                         };
 
                         res.result = true;
@@ -139,7 +143,7 @@ namespace Capas.Logica
                     else
                     {
                         res.listaDeErrores = new List<string>();
-                        res.listaDeErrores.Add("No se encontró el usuario: " + req.id);
+                        res.listaDeErrores.Add("No se encontró el usuario: " + req.email);
                         res.result = false;
                     }
 

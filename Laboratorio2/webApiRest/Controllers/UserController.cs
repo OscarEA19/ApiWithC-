@@ -40,10 +40,11 @@ namespace webApiRest.Controllers
         }
 
         // GET api/<controller>/
-        public ResObtenerUsuario Get(int id)
+        public ResObtenerUsuario Get(string email, string password)
         {
             ReqObtenerUsuario req = new ReqObtenerUsuario();
-            req.id = id;
+            req.email= email; 
+            req.password= password; 
 
             LogUsuario laLogicaDelBackEnd = new LogUsuario();
             return laLogicaDelBackEnd.obtenerUsuario(req);
